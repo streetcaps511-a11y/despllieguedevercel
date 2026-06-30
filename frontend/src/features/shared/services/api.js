@@ -9,9 +9,11 @@ import axios from 'axios';
 // 🌐 ESTRATEGIA DE CONEXIÓN TRIPLE (Resiliencia Total)
 // 🌐 ESTRATEGIA DE CONEXIÓN ULTRA-ESTABLE (Prioridad 127.0.0.1)
 const getDynamicBaseURL = () => {
-  if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
-  
-  return 'https://urlmovil-1.onrender.com';
+  let url = import.meta.env.VITE_API_URL || 'https://urlmovil-1.onrender.com';
+  if (url.endsWith('/')) {
+    url = url.slice(0, -1);
+  }
+  return url;
 };
 
 export const API_BASE_URL = getDynamicBaseURL();

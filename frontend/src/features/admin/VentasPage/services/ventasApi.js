@@ -3,7 +3,7 @@
    Toma los datos del Hook y realiza peticiones usando fetch o axios, y maneja posibles errores de red. */
 
 import * as adminApi from "../../../shared/services/adminApi.js";
-import api from "../../../shared/services/api.js";
+import api, { API_BASE_URL } from "../../../shared/services/api.js";
 
 /**
  * Mapea los datos del backend al formato del frontend
@@ -101,9 +101,7 @@ export const mapBackendToFrontend = (v) => {
           v.evidencia ||
           null;
         if (raw && typeof raw === "string" && raw.startsWith("/uploads")) {
-          const baseUrl =
-            import.meta.env.VITE_API_URL || "https://urlmovil-1.onrender.com";
-          return `${baseUrl}${raw}`;
+          return `${API_BASE_URL}${raw}`;
         }
         return raw;
       } catch {
@@ -115,9 +113,7 @@ export const mapBackendToFrontend = (v) => {
       try {
         const raw = v.comprobante2 || v.Comprobante2 || null;
         if (raw && typeof raw === "string" && raw.startsWith("/uploads")) {
-          const baseUrl =
-            import.meta.env.VITE_API_URL || "https://urlmovil-1.onrender.com";
-          return `${baseUrl}${raw}`;
+          return `${API_BASE_URL}${raw}`;
         }
         return raw;
       } catch {

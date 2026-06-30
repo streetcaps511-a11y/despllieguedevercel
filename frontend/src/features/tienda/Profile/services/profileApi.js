@@ -2,17 +2,16 @@
    Este archivo se encarga exclusivamente de la comunicación HTTP (GET, POST, PUT, DELETE) con el Backend. 
    Toma los datos del Hook y realiza peticiones usando fetch o axios, y maneja posibles errores de red. */
 
-import api from "../../../shared/services/api";
+import api, { API_BASE_URL } from "../../../shared/services/api";
 
 /**
  * Fetch products for selection in returns form
  */
 const getImageUrl = (raw) => {
   if (!raw) return '';
-  const baseUrl = import.meta.env.VITE_API_URL || 'https://urlmovil-1.onrender.com';
   if (typeof raw === 'string') {
-    if (raw.startsWith('/uploads')) return `${baseUrl}${raw}`;
-    if (raw.includes("urlmovil-1.onrender.com")) return raw.replace("https://urlmovil-1.onrender.com", baseUrl);
+    if (raw.startsWith('/uploads')) return `${API_BASE_URL}${raw}`;
+    if (raw.includes("urlmovil-1.onrender.com")) return raw.replace("https://urlmovil-1.onrender.com", API_BASE_URL);
   }
   return raw;
 };

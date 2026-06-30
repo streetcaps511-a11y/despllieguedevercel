@@ -7,6 +7,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { useAuth } from "../../../shared/contexts";
 import * as profileApi from "../services/profileApi";
 import { NitroCache } from "../../../shared/utils/NitroCache";
+import { API_BASE_URL } from "../../../shared/services/api";
 
 export const useProfile = () => {
   const { user: authUser, logout: onLogout, isAdmin, updateUser } = useAuth();
@@ -709,10 +710,9 @@ export const useProfile = () => {
 
     const getImageUrl = (raw) => {
       if (!raw) return null;
-      const baseUrl = import.meta.env.VITE_API_URL || 'https://urlmovil-1.onrender.com';
       if (typeof raw === 'string') {
-        if (raw.startsWith('/uploads')) return `${baseUrl}${raw}`;
-        if (raw.includes("urlmovil-1.onrender.com")) return raw.replace("https://urlmovil-1.onrender.com", baseUrl);
+        if (raw.startsWith('/uploads')) return `${API_BASE_URL}${raw}`;
+        if (raw.includes("urlmovil-1.onrender.com")) return raw.replace("https://urlmovil-1.onrender.com", API_BASE_URL);
       }
       return raw;
     };
@@ -752,10 +752,9 @@ export const useProfile = () => {
   const mapReturns = (returns) => {
     const getImageUrl = (raw) => {
       if (!raw) return null;
-      const baseUrl = import.meta.env.VITE_API_URL || 'https://urlmovil-1.onrender.com';
       if (typeof raw === 'string') {
-        if (raw.startsWith('/uploads')) return `${baseUrl}${raw}`;
-        if (raw.includes("urlmovil-1.onrender.com")) return raw.replace("https://urlmovil-1.onrender.com", baseUrl);
+        if (raw.startsWith('/uploads')) return `${API_BASE_URL}${raw}`;
+        if (raw.includes("urlmovil-1.onrender.com")) return raw.replace("https://urlmovil-1.onrender.com", API_BASE_URL);
       }
       return raw;
     };

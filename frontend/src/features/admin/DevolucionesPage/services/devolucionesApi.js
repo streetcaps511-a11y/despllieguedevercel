@@ -3,7 +3,7 @@
    Toma los datos del Hook y realiza peticiones usando fetch o axios, y maneja posibles errores de red. */
 
 import * as adminApi from "../../../shared/services/adminApi";
-import apiClient from "../../../shared/services/api";
+import apiClient, { API_BASE_URL } from "../../../shared/services/api";
 import {
   getDevoluciones as getDevolucionesOriginal,
   createDevolucion,
@@ -17,13 +17,12 @@ const getDevoluciones = getDevolucionesOriginal;
 export const mapDevolucionData = (d) => {
   const getImageUrl = (raw) => {
     if (!raw) return null;
-    const baseUrl = import.meta.env.VITE_API_URL || "https://urlmovil-1.onrender.com";
     if (typeof raw === "string") {
       if (raw.startsWith("/uploads")) {
-        return `${baseUrl}${raw}`;
+        return `${API_BASE_URL}${raw}`;
       }
       if (raw.includes("urlmovil-1.onrender.com")) {
-        return raw.replace("https://urlmovil-1.onrender.com", baseUrl);
+        return raw.replace("https://urlmovil-1.onrender.com", API_BASE_URL);
       }
     }
     return raw;

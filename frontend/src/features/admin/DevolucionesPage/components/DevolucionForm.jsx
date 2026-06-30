@@ -6,6 +6,7 @@
 import React from 'react';
 import { FaUser, FaExchangeAlt, FaCamera, FaTrash, FaImage, FaCheckCircle } from 'react-icons/fa';
 import { SearchSelect } from '../../../shared/services';
+import { API_BASE_URL } from '../../../shared/services/api';
 
 const DevolucionForm = ({
   formData,
@@ -199,11 +200,10 @@ const DevolucionForm = ({
                       (p.imagenes && p.imagenes[0]) ||
                       (p.Imagenes && p.Imagenes[0]) ||
                       null;
-                    const baseUrl = import.meta.env.VITE_API_URL || "https://urlmovil-1.onrender.com";
                     const imgSrc = imgPath
                       ? imgPath.startsWith("http")
                         ? imgPath
-                        : `${baseUrl}${imgPath}`
+                        : `${API_BASE_URL}${imgPath}`
                       : "/placeholder.png";
 
                     return (
@@ -262,11 +262,10 @@ const DevolucionForm = ({
                           (p.imagenes && p.imagenes[0]) ||
                           (p.Imagenes && p.Imagenes[0]) ||
                           null;
-                       const baseUrl = import.meta.env.VITE_API_URL || "https://urlmovil-1.onrender.com";
                         const imgSrc = imgPath
                           ? imgPath.startsWith("http")
                             ? imgPath
-                            : `${baseUrl}${imgPath}`
+                            : `${API_BASE_URL}${imgPath}`
                           : "/placeholder.png";
 
                         return (

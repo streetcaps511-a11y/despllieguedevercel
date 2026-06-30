@@ -9,6 +9,7 @@ import { useAuth, useCart } from '../../../shared/contexts';
 import { PAYMENT_METHODS } from '../components/CheckoutModal';
 import * as cartApi from '../services/cartApi';
 import * as profileApi from '../../Profile/services/profileApi';
+import { API_BASE_URL } from '../../../shared/services/api';
 
 export const useCartPage = () => {
   const { user } = useAuth();
@@ -338,12 +339,11 @@ export const useCartPage = () => {
     getImageUrl: (item) => {
       let img = item?.imagen || item?.imagenes?.[0] || item?.image || '';
       if (typeof img === 'string') {
-        const baseUrl = import.meta.env.VITE_API_URL || 'https://urlmovil-1.onrender.com';
         if (img.startsWith('/uploads')) {
-          return `${baseUrl}${img}`;
+          return `${API_BASE_URL}${img}`;
         }
         if (img.includes('urlmovil-1.onrender.com')) {
-          return img.replace('https://urlmovil-1.onrender.com', baseUrl);
+          return img.replace('https://urlmovil-1.onrender.com', API_BASE_URL);
         }
       }
       return img || 'https://res.cloudinary.com/dxc5qqsjd/image/upload/v1762910780/gorraazultodaNY_cyfchf.jpg';

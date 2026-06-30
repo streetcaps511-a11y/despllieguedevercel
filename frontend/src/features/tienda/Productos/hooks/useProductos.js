@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useRef } from 'react';
 import { getAllProducts } from "../services/productosApi";
 import { NitroCache } from '../../../shared/utils/NitroCache';
 import { useSearch, useCart } from '../../../shared/contexts';
-import api from '../../../shared/services/api';
+import api, { API_BASE_URL } from '../../../shared/services/api';
 
 export const BULK_MIN_QTY = 6;
 
@@ -12,8 +12,7 @@ export const normalizeSizes = (p) =>
 
 export const safeImg = (p) => {
   let url = p?.imagenes?.[0] || p?.imagen || 'https://placehold.co/300?text=Sin+Imagen';
-  const baseUrl = import.meta.env.VITE_API_URL || 'https://urlmovil-1.onrender.com';
-  return url.startsWith('/') ? `${baseUrl}${url}` : url;
+  return url.startsWith('/') ? `${API_BASE_URL}${url}` : url;
 };
 
 const normalizeImages = (p) => {
